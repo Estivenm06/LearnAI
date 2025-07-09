@@ -1,0 +1,15 @@
+@import "tailwindcss";
+
+@font-face {
+    font-family: 'Inter';
+    src: url('/fonts/InterFont-woff2') format('woff2');
+    font-weight: 400;
+    font-display: swap;
+}
+
+@theme {
+    --color-learnSidebar: #464646;
+    --color-learnbg: #343434;
+    --spacing-learn: 300px;
+    --font-sans: 'Inter', system-ui, sans-serif;
+}
