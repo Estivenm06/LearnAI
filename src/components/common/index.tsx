@@ -5,11 +5,11 @@ import "@ui5/webcomponents-icons/dist/activity-items";
 import "@ui5/webcomponents-icons/dist/map-3";
 import "@ui5/webcomponents-icons/dist/decline";
 import "@ui5/webcomponents-icons/dist/menu";
-import { Button, Icon } from "@ui5/webcomponents-react";
+import { Icon } from "@ui5/webcomponents-react";
+import { Link, useLocation, useParams } from "react-router";
 
 const Sidebar = () => {
-  const pathName =
-    typeof window !== "undefined" ? window.location.pathname : "/";
+  const { pathname } = useLocation();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const toggleMenu = () => setIsMenuOpen((prev) => !prev);
@@ -50,10 +50,10 @@ const Sidebar = () => {
                 `}
       >
         <ul className="mb-5">
-          <a
-            href="#"
-            className={`text-white text-lg text-light ${
-              pathName === "/" && "bg-learnbg p-2.5 rounded-lg shadow-md"
+          <Link
+            to="/"
+            className={`text-white text-lg hover:text-gray-300 transition-colors duration-300 ${
+              pathname === "/" && "bg-learnbg p-2.5 rounded-lg shadow-md"
             }`}
           >
             <Icon
@@ -61,13 +61,13 @@ const Sidebar = () => {
               className="align-middle text-white w-5 h-5 mr-3"
             ></Icon>
             Ask Something
-          </a>
+          </Link>
         </ul>
         <ul className="mb-5">
-          <a
-            href="#"
-            className={`text-white text-lg text-light ${
-              pathName === "/roadmap" && "bg-learnbg p-2.5 rounded-lg shadow-md"
+          <Link
+            to="/roadmap"
+            className={`text-white text-lg hover:text-gray-300 transition-colors duration-300 ${
+              pathname === "/roadmap" && "bg-learnbg p-2.5 rounded-lg shadow-md"
             }`}
           >
             <Icon
@@ -75,13 +75,13 @@ const Sidebar = () => {
               className="align-middle text-white w-5 h-5 mr-3"
             ></Icon>
             RoadMap Chat
-          </a>
+          </Link>
         </ul>
         <ul className="mb-5">
-          <a
-            href="#"
-            className={`text-white text-lg text-light ${
-              pathName === "/history" && "bg-learnbg p-2.5 rounded-lg shadow-md"
+          <Link
+            to="/history"
+            className={`text-white text-lg hover:text-gray-300 transition-colors duration-300 ${
+              pathname === "/history" && "bg-learnbg p-2.5 rounded-lg shadow-md"
             }`}
           >
             <Icon
@@ -89,7 +89,7 @@ const Sidebar = () => {
               className="align-middle text-white w-5 h-5 mr-3"
             ></Icon>
             History
-          </a>
+          </Link>
         </ul>
       </nav>
     </header>
