@@ -6,7 +6,7 @@ import "@ui5/webcomponents-icons/dist/map-3";
 import "@ui5/webcomponents-icons/dist/decline";
 import "@ui5/webcomponents-icons/dist/menu";
 import { Icon } from "@ui5/webcomponents-react";
-import { Link, useLocation, useParams } from "react-router";
+import { Link, useLocation } from "react-router";
 
 const Sidebar = () => {
   const { pathname } = useLocation();
@@ -52,8 +52,8 @@ const Sidebar = () => {
         <ul className="mb-5">
           <Link
             to="/"
-            className={`text-white text-lg hover:text-gray-300 transition-colors duration-300 ${
-              pathname === "/" && "bg-learnbg p-2.5 rounded-lg shadow-md"
+            className={`p-2.5 rounded-lg text-white text-lg hover:text-gray-300 transition-colors duration-300 ${
+              pathname === "/" && "bg-learnbg shadow-md"
             }`}
           >
             <Icon
@@ -66,8 +66,8 @@ const Sidebar = () => {
         <ul className="mb-5">
           <Link
             to="/roadmap"
-            className={`text-white text-lg hover:text-gray-300 transition-colors duration-300 ${
-              pathname === "/roadmap" && "bg-learnbg p-2.5 rounded-lg shadow-md"
+            className={`p-2.5 rounded-lg text-white text-lg hover:text-gray-300 transition-colors duration-300 ${
+              pathname === "/roadmap" && "bg-learnbg shadow-md"
             }`}
           >
             <Icon
@@ -80,8 +80,8 @@ const Sidebar = () => {
         <ul className="mb-5">
           <Link
             to="/history"
-            className={`text-white text-lg hover:text-gray-300 transition-colors duration-300 ${
-              pathname === "/history" && "bg-learnbg p-2.5 rounded-lg shadow-md"
+            className={`p-2.5 rounded-lg text-white text-lg hover:text-gray-300 transition-colors duration-300 ${
+              pathname === "/history" && "bg-learnbg shadow-md"
             }`}
           >
             <Icon
