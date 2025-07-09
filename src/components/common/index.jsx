@@ -34,18 +34,17 @@ const Sidebar = () => {
       {/* navigation */}
       <nav
         className={`
-                flex-col gap-5 text-balance w-full transition-all duration-300 ease-in-out
+                gap-5 text-balance transition-all duration-300 ease-in-out
 
                 // Mobile Specific Styling for Overlay
-                fixed md:static top-0 right-0 bg-learnSidebar
-                overflow-y-auto md:overflow-visible
-                max-w-[70%] md:max-w-none p-5
+                fixed md:static top-0 right-0 bg-learnSidebar md:bg-transparent
+                overflow-y-auto md:overflow-visible p-5 w-full
 
                 // Transition Classes
                 ${
                   isMenuOpen
-                    ? "translate-x-0 opacity-100 visible right-2 top-30 z-50 rounded-lg shadow-lg"
-                    : "translate-x-full opacity-0 invisible bg-transparent md:opacity-100 md:translate-x-0 md:visible"
+                    ? "translate-x-0 opacity-100 visible top-20 z-50 md:shadow-none"
+                    : "translate-x-full opacity-0 invisible md:opacity-100 md:translate-x-0 md:visible"
                 }
                 `}
       >
