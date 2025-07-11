@@ -1,8 +1,11 @@
 import React from "react"
+import { SearchBar } from "../common/index.jsx"
 
 const Home = () => {
     return (
-        <main></main>
+        <div className="w-full h-full flex justify-center items-center md:justify-start md:items-end">
+            <SearchBar />
+        </div>
     )
 }
 

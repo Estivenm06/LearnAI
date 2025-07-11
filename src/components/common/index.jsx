@@ -5,6 +5,10 @@ import "@ui5/webcomponents-icons/dist/activity-items";
 import "@ui5/webcomponents-icons/dist/map-3";
 import "@ui5/webcomponents-icons/dist/decline";
 import "@ui5/webcomponents-icons/dist/menu";
+//D-modifify
+import "@ui5/webcomponents-icons/dist/paper-plane";
+import "@ui5/webcomponents-icons/dist/lightbulb";
+//D-modifify
 import { Icon } from "@ui5/webcomponents-react";
 import { Link, useLocation } from "react-router";
 
@@ -95,4 +99,48 @@ const Sidebar = () => {
   );
 };
 
-export { Sidebar };
+const SearchBar = () => {
+  return (
+      <div className="w-full max-w-4xl p-6 md:ml-10 mb-10">
+        {/* Main Search Form */}
+        <form className="relative mb-6">
+          <input
+            type="text"
+            placeholder="Something you want to learn?"
+            className="w-full border-search border-4 py-4 px-6 pr-16 rounded-full bg-white text-gray-800 placeholder-search placeholder:font-[600] focus:outline-none"
+          />
+          <button
+            type="submit"
+            className="absolute right-3 inset-y-0 my-auto w-10 h-10 flex items-center justify-center"
+          >
+            <Icon
+              name="paper-plane"
+              className="w-5 h-5 text-gray-600 hover: cursor-pointer"
+            />
+          </button>
+        </form>
+
+        {/* Quick Suggestions */}
+          <div className="flex items-center gap-2 text-gray-300 mb-5">
+            <Icon name="lightbulb" className="w-4 h-4 fill-white" />
+            <span className="text-sm">Quick suggestions:</span>
+          </div>
+        <div className="flex flex-wrap gap-3 items-center">
+          <button className="px-4 py-2 text-sm bg-white text-search font-[600] rounded-full border-search border-4">
+            Learn Python programming
+          </button>
+          <button className="px-4 py-2 text-sm bg-white text-search font-[600] rounded-full border-search border-4">
+            Web development basics
+          </button>
+          <button className="px-4 py-2 text-sm bg-white text-search font-[600] rounded-full border-search border-4">
+            Digital marketing
+          </button>
+          <button className="px-4 py-2 text-sm bg-white text-search font-[600] rounded-full border-search border-4">
+            Machine learning
+          </button>
+        </div>
+      </div>
+  );
+};
+
+export { Sidebar, SearchBar };
