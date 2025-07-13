@@ -3,9 +3,11 @@ import { useState } from "react";
 const useChat = () => {
   const [assistantResponse, setAssistantResponse] = useState('');
   const [error, setError] = useState(null);
+  const [loading, setLoading] = useState(false);
 
   const mutate = async ({ content }) => {
     try {
+      setLoading(true);
       const response = await fetch("/api/chat/route", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -22,6 +24,7 @@ const useChat = () => {
 
       if (data.content) {
         setAssistantResponse(data.content);
+        setLoading(false);
         return true;
       } else {
         setError("No content received from assistant.");
@@ -34,7 +37,7 @@ const useChat = () => {
 
   const clearResponse = () => setAssistantResponse('');
 
-  return { mutate, error, assistantResponse, clearResponse };
+  return { mutate, error, assistantResponse, clearResponse, loading };
 };
 
 export { useChat };

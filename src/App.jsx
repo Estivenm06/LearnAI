@@ -1,14 +1,14 @@
 import React from "react";
 import { Routes, Route } from "react-router-dom";
 
-import { Sidebar } from "./components/common";
+import { SideBar } from "./components/common/SideBar";
 import { Home } from "./components/home";
 import { RoadMap } from "./components/pages/RoadMap";
 
 const App = () => {
   return (
     <>
-      <Sidebar />
+      <SideBar />
         <Routes>
           <Route index element={<Home />} />
           <Route path="/roadmap" element={<RoadMap />} />
