@@ -15,3 +15,22 @@
     --color-search: #554038;
 }
 
+/* width */
+::-webkit-scrollbar {
+    @apply w-3;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+    @apply bg-transparent p-5 rounded-full;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+    @apply bg-learnSidebar rounded-sm;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+    background: #555;
+}

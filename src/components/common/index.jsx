@@ -19,16 +19,15 @@ const Sidebar = () => {
   const toggleMenu = () => setIsMenuOpen((prev) => !prev);
 
   return (
-    <header className="bg-learnSidebar md:min-h-screen md:w-learn p-5 font-sans text-white grid grid-cols-2 md:grid-cols-none md:grid-rows-2 shadow-md">
+    <header className="fixed z-50 md:static md:z-0 w-full bg-learnSidebar  md:min-h-screen md:w-learn p-5 font-sans text-white grid grid-cols-2 md:grid-cols-none md:grid-rows-2 shadow-md">
       {/* header */}
       <div className="w-[120%] md:w-[100%] flex flex-col gap-1 text-xl text-balance md:text-2xl">
-        <h1>Welcome to Learn AI</h1>
-        <p>This is a prototype</p>
+        <h1>Learn AI</h1>
       </div>
       {/* Hamburger Button for mobile */}
       <div className="md:hidden flex justify-end">
         <button
-          className="md:hidden px-10 rounded-lg bg-white h-[60%] py-2 focus:outline-none focus:ring-2 focus-within:ring-white"
+          className="md:hidden px-10 rounded-lg bg-white h-[80%] py-2 focus:outline-none focus:ring-2 focus-within:ring-white"
           onClick={toggleMenu}
           aria-label={isMenuOpen ? "Close menu" : "Open menu"}
         >
@@ -80,42 +79,37 @@ const Sidebar = () => {
             RoadMap Chat
           </Link>
         </ul>
-        <ul className="mb-5">
-          <Link
-            to="/history"
-            className={`p-2.5 rounded-lg text-white text-lg hover:text-gray-300 transition-colors duration-300 ${
-              pathname === "/history" && "bg-learnbg shadow-md"
-            }`}
-          >
-            <Icon
-              name="activity-items"
-              className="align-middle text-white w-5 h-5 mr-3"
-            ></Icon>
-            History
-          </Link>
-        </ul>
       </nav>
     </header>
   );
 };
 
-const SearchBar = ({ mutate }) => {
+const SearchBar = ({ mutate, setUserInput }) => {
   const onSubmit = (event) => {
     event.preventDefault();
-    const content = event.target.querySelector('input').value    
-    if(mutate({ content })){
-      event.target.querySelector('input').value = '';
-    };
-  }
+    const content = event.target.querySelector("input").value;
+    console.log(content);
+    
+    setUserInput(content);
+    if (mutate({ content })) {
+      event.target.querySelector("input").value = "";
+    }
+  };
+
+  const handleSuggestions = ({ content }) => {
+    mutate({ content });
+    setUserInput(content);
+  };
 
   return (
-    <article className="w-full max-w-4xl p-6 mb-10 mx-auto">
+    <article className="w-full">
+      <div className="text-base max-w-4xl px-6 pb-2">
       {/* Main Search Form */}
       <form className="relative mb-6" onSubmit={onSubmit}>
         <input
           type="text"
           placeholder="Something you want to learn?"
-          className="w-full border-search border-4 py-4 px-10 rounded-full bg-white text-sea placeholder-search  focus:outline-none font-bold md:text-lg"
+          className="w-full border-search border-4 py-3 md:py-4 px-5 md:px-10 rounded-full bg-white text-sea placeholder-search  focus:outline-none font-bold text-sm md:text-lg"
         />
         <button
           type="submit"
@@ -134,18 +128,19 @@ const SearchBar = ({ mutate }) => {
         <span className="text-md font-semibold">Quick suggestions:</span>
       </div>
       <div className="flex flex-wrap gap-1.5 items-center text-balance">
-        <button className="px-4 py-2 text-sm bg-white text-search font-bold rounded-full border-search border-3">
+        <button onClick={() => handleSuggestions({content: 'Act like an Python expert and tell me how to learn python programming'})} className="px-4 py-2 text-sm bg-white text-search font-bold rounded-full border-search border-3 hover:scale-105 cursor-pointer transition-all duration-300">
           Learn Python programming
         </button>
-        <button className="px-4 py-2 text-sm bg-white text-search font-bold rounded-full border-search border-3">
+        <button onClick={() => handleSuggestions({content: 'Act like an Web Development Expert and tell me how to learn web development basics'})} className="px-4 py-2 text-sm bg-white text-search font-bold rounded-full border-search border-3 hover:scale-105 cursor-pointer transition-all duration-300">
           Web development basics
         </button>
-        <button className="px-4 py-2 text-sm bg-white text-search font-bold rounded-full border-search border-3">
+        <button onClick={() => handleSuggestions({content: 'Act like an Digital Marketing Expert and tell me how to learn Digital marketing'})} className="px-4 py-2 text-sm bg-white text-search font-bold rounded-full border-search border-3 hover:scale-105 cursor-pointer transition-all duration-300">
           Digital marketing
         </button>
-        <button className="px-4 py-2 text-sm bg-white text-search font-bold rounded-full border-search border-3">
+        <button onClick={() => handleSuggestions({content: 'Act like an Machine learning Expert and tell me how to learn Machine learning'})} className="px-4 py-2 text-sm bg-white text-search font-bold rounded-full border-search border-3 hover:scale-105 cursor-pointer transition-all duration-300">
           Machine learning
         </button>
+      </div>
       </div>
     </article>
   );
