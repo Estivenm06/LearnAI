@@ -1,12 +1,4 @@
 import "dotenv/config";
-import { createClient } from "@supabase/supabase-js";
-
-const supabase = createClient(
-  process.env.SUPABASE_URL,
-  process.env.SUPABASE_ANON_KEY
-);
-
-const tableName = "history";
 
 export async function POST(request) {
   const body = await request.json();
@@ -46,9 +38,6 @@ export async function POST(request) {
 
     const data = await groqResponse.json();
     const assistantMessage = data.choices?.[0]?.message?.content || "";
-
-    // const completeMessages = [...messages, { role: "assistant", content: assistantMessage }];
-    // await supabase.from(tableName).insert([{ messages: completeMessages }]);
 
     return Response.json({ content: assistantMessage });
   } catch (error) {
