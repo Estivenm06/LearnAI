@@ -1,13 +1,12 @@
-import React from 'react'
+import React from "react";
+import { useGetHistory } from "../../hooks/useGetHistory";
 
 const History = () => {
-    return (
-      <main>
+  const { data, error, loading } = useGetHistory();
+  
+  if(loading) return <div>Loading...</div>
+    
+  return <main></main>;
+};
 
-      </main>
-    )
-}
-
-export {
-    History
-}
+export { History };

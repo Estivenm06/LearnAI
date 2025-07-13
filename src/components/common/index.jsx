@@ -9,7 +9,7 @@ import "@ui5/webcomponents-icons/dist/menu";
 import "@ui5/webcomponents-icons/dist/feeder-arrow";
 import "@ui5/webcomponents-icons/dist/lightbulb";
 //D-modifify
-import { Icon, TextArea } from "@ui5/webcomponents-react";
+import { Icon } from "@ui5/webcomponents-react";
 import { Link, useLocation } from "react-router";
 
 const Sidebar = () => {
@@ -99,11 +99,19 @@ const Sidebar = () => {
   );
 };
 
-const SearchBar = () => {
+const SearchBar = ({ mutate }) => {
+  const onSubmit = (event) => {
+    event.preventDefault();
+    const content = event.target.querySelector('input').value    
+    if(mutate({ content })){
+      event.target.querySelector('input').value = '';
+    };
+  }
+
   return (
-    <article className="w-full max-w-4xl p-6 md:ml-10 mb-10">
+    <article className="w-full max-w-4xl p-6 mb-10 mx-auto">
       {/* Main Search Form */}
-      <form className="relative mb-6">
+      <form className="relative mb-6" onSubmit={onSubmit}>
         <input
           type="text"
           placeholder="Something you want to learn?"
