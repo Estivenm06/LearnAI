@@ -1,0 +1,86 @@
+import React, { useState } from "react";
+import { useLocation, Link } from "react-router";
+import { Icon } from "@ui5/webcomponents-react";
+import "@ui5/webcomponents-icons/dist/AllIcons";
+import "@ui5/webcomponents-icons/dist/activity-items";
+import "@ui5/webcomponents-icons/dist/map-3";
+import "@ui5/webcomponents-icons/dist/decline";
+import "@ui5/webcomponents-icons/dist/menu";
+import "@ui5/webcomponents-icons/dist/activities";
+
+
+const SideBar = () => {
+    const { pathname } = useLocation();
+    const [isMenuOpen, setIsMenuOpen] = useState(false);
+  
+    const toggleMenu = () => setIsMenuOpen((prev) => !prev);
+  
+    return (
+      <header className="fixed z-50 md:static md:z-0 w-full bg-learnSidebar  md:min-h-screen md:w-learn p-5 font-sans text-white grid grid-cols-2 md:grid-cols-none md:grid-rows-2 shadow-md">
+        {/* header */}
+        <div className="w-[120%] md:w-[100%] flex flex-col gap-1 text-xl text-balance md:text-2xl">
+          <h1>Learn AI</h1>
+        </div>
+        {/* Hamburger Button for mobile */}
+        <div className="md:hidden flex justify-end">
+          <button
+            className="md:hidden px-10 rounded-lg bg-white h-[80%] py-2 focus:outline-none focus:ring-2 focus-within:ring-white"
+            onClick={toggleMenu}
+            aria-label={isMenuOpen ? "Close menu" : "Open menu"}
+          >
+            <Icon name={isMenuOpen ? "decline" : "menu"} className="w-5 h-5" />
+          </button>
+        </div>
+        {/* navigation */}
+        <nav
+          className={`
+                  gap-5 text-balance transition-all duration-300 ease-in-out
+  
+                  // Mobile Specific Styling for Overlay
+                  fixed md:static top-0 right-0 bg-learnSidebar md:bg-transparent
+                  overflow-y-auto md:overflow-visible p-5 w-full
+  
+                  // Transition Classes
+                  ${
+                    isMenuOpen
+                      ? "translate-x-0 opacity-100 visible top-20 z-50 md:shadow-none"
+                      : "translate-x-full opacity-0 invisible md:opacity-100 md:translate-x-0 md:visible"
+                  }
+                  `}
+        >
+          <ul className="mb-5">
+            <Link
+              to="/"
+              className={`p-2.5 rounded-lg text-white text-lg hover:text-gray-300 transition-colors duration-300 ${
+                pathname === "/" && "bg-learnbg shadow-md"
+              }`}
+            >
+              <Icon
+                name="activities"
+                className="align-middle text-white w-5 h-5 mr-3"
+              ></Icon>
+              Ask Something
+            </Link>
+          </ul>
+          <ul className="mb-5">
+            <Link
+              to="/roadmap"
+              className={`p-2.5 rounded-lg text-white text-lg hover:text-gray-300 transition-colors duration-300 ${
+                pathname === "/roadmap" && "bg-learnbg shadow-md"
+              }`}
+            >
+              <Icon
+                name="map-3"
+                className="align-middle text-white w-5 h-5 mr-3"
+              ></Icon>
+              RoadMap Chat
+            </Link>
+          </ul>
+        </nav>
+      </header>
+    );
+  };
+
+  export {
+    SideBar
+  }
