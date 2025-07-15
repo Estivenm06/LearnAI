@@ -1,8 +1,11 @@
 import React, { useEffect, useState, useRef } from "react";
 import "@ui5/webcomponents-icons/dist/AllIcons.js";
 import "@ui5/webcomponents-icons/dist/ai.js";
+import ReactMarkdown from "react-markdown";
+import remarkGfm from 'remark-gfm'
+import rehypeSanitize from 'rehype-sanitize';
+import rehypeHighlight from 'rehype-highlight';
 
-import { RenderStructuredResponse } from "../chat/RenderStructuredResponse.jsx";
 import { SearchBar } from "../common/SearchBar.jsx";
 import { useChat } from "../../hooks/useChat.js";
 
@@ -12,45 +15,26 @@ const Home = () => {
   const [userInput, setUserInput] = useState("");
   const [userInputs, setUserInputs] = useState([]);
 
-  const outputRef = useRef(null);
-  const scrollRef = useRef(null);
+  const scrollRefWhenUserInput = useRef(null);
 
   useEffect(() => {
+    if (userInput.trim !== "") {
+      scrollRefWhenUserInput.current?.scrollIntoView({ behavior: "smooth" });
+    }
     if (!assistantResponse || assistantResponse.length === 0) return;
 
-    const output = outputRef;
-
-    let i = 0;
-
-    const typeNextChar = () => {
-      if (i < assistantResponse.length) {
-        output.current.innerText += assistantResponse[i];
-        i++;
-
-        scrollRef.current?.scrollIntoView({ behavior: "smooth" });
-
-        setTimeout(typeNextChar, 1);
-      } else {
-        setResponses((prev) => [...prev, assistantResponse]);
-        setUserInputs((prev) => [...prev, userInput]);
-        clearResponse();
-        setUserInput("");
-      }
-    };
-
-    typeNextChar();
-
-    return () => {
-      if (output.current) {
-        output.current.innerText = "";
-      }
-    };
+    if (assistantResponse && assistantResponse.length > 0) {
+      setResponses((prev) => [...prev, assistantResponse]);
+      setUserInputs((prev) => [...prev, userInput]);
+      clearResponse();
+      setUserInput("");
+    }
   }, [assistantResponse, clearResponse, userInput]);
 
   return (
-    <main className="mt-25 md:mt-0 flex-1 h-screen relative overflow-hidden flex flex-col">
+    <main className="mt-25 md:mt-0 flex-1 h-screen relative overflow-hidden grid grid-rows-2">
       <article
-        className={`flex-1 overflow-y-auto px-6 py-4 space-y-6 ${
+        className={`row-span-2 overflow-y-auto px-6 py-4 space-y-6 ${
           responses.length > 0 || assistantResponse
             ? "z-0"
             : "z-20 w-full h-full flex justify-center items-center"
@@ -68,11 +52,11 @@ const Home = () => {
             {userInputs.map((userInput, idx) => (
               <div
                 key={idx}
-                className="flex flex-col items-center space-y-4 max-w-4xl px-6 mx-auto"
-              >
+                className="flex flex-col items-center space-y-4 max-w-4xl md:px-6 mx-auto"
+                >
                 {/* User Message */}
                 <div className="flex justify-end w-full">
-                  <p className="text-base font-medium text-white bg-learnSidebar px-4 py-3 rounded-xl shadow-sm w-fit max-w-xl whitespace-pre-wrap">
+                  <p className="text-base font-medium text-white bg-learnSidebar px-4 py-3 rounded-xl shadow-sm w-fit">
                     {userInput}
                   </p>
                 </div>
@@ -80,7 +64,15 @@ const Home = () => {
                 {/* Assistant Response (only render if it exists) */}
                 {responses[idx] && (
                   <div className="flex justify-start w-full">
-                    <RenderStructuredResponse text={responses[idx]} />
+                    <div className="space-y-6 bg-gray-200 px-4 py-3 rounded-xl shadow-md overflow-x-hidden w-full max-w-2xl">
+                      <ReactMarkdown remarkPlugins={[remarkGfm]}
+                      rehypePlugins={[rehypeSanitize, rehypeHighlight]}
+                      components={{
+                        pre: (props) => <pre className="whitespace-pre-wrap text-balance w-fit" {...props}/>
+                      }}>
+                        {responses[idx]}
+                      </ReactMarkdown>
+                    </div>
                   </div>
                 )}
               </div>
@@ -94,25 +86,20 @@ const Home = () => {
                     {userInput}
                   </p>
                 </div>
-                {loading && !assistantResponse ? (
+                {loading && !assistantResponse && (
                   <div className="flex justify-start w-full px-6">
-                    <div className="bg-gray-200 animate-pulse px-6 py-5 rounded-xl shadow-md w-fit max-w-2xl space-y-2">
+                    <div
+                      className="bg-gray-200 animate-pulse px-6 py-5 rounded-xl shadow-md w-fit max-w-2xl space-y-2"
+                      ref={scrollRefWhenUserInput}
+                    >
                       <div className="h-4 w-48 bg-gray-300 rounded"></div>
                       <div className="h-4 w-48 bg-gray-300 rounded"></div>
                       <div className="h-4 w-48 bg-gray-300 rounded"></div>
                     </div>
                   </div>
-                ) : (
-                  <div className="flex justify-start w-full px-6">
-                    <p
-                      ref={outputRef}
-                      className="text-base font-medium text-learnbg bg-blue-50 px-4 py-3 rounded-xl shadow-sm w-fit max-w-2xl whitespace-pre-wrap"
-                    />
-                  </div>
                 )}
               </div>
             )}
-            <div ref={scrollRef} />
           </>
         )}
       </article>
