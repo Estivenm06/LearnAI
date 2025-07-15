@@ -1,7 +1,10 @@
-<h1>Learn AI</h1>
+<h1 align="center" style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">🚀 Learn AI</h1>
 
-<span>By _Estiven Mejia_ and _David Mejia_</span>
+<p align="center" style="font-size: 18px;">
+  <em>By <strong>Estiven Mejia</strong> and <strong>David Mejia</strong></em>
+</p>
 
-![Sonic rizz](https://media.tenor.com/aBEt9WQMSfYAAAAM/sonic-rizz.gif)
-![Stonks](https://media1.tenor.com/m/wjS2sXen8iMAAAAC/stonks-up-stongs.gif))
-![Rock that body](https://phoneky.co.uk/thumbs/screensavers/down/music/blackeyedp_ic3fassd.gif)
+<p align="center">
+  <img src="https://media1.tenor.com/m/wjS2sXen8iMAAAAC/stonks-up-stongs.gif" alt="Stonks GIF" width="400" height="300"/>
+  <img src="https://media.tenor.com/aBEt9WQMSfYAAAAM/sonic-rizz.gif" alt="Stonks GIF" width="400" height="300"/>
+</p>
