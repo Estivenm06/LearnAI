@@ -15,8 +15,24 @@ const SearchBar = ({ mutate, setUserInput }) => {
     };
   
     const handleSuggestions = ({ content }) => {
-      mutate({ content });
       setUserInput(content);
+      switch (content) {
+        case 'Learn Python Programming':
+          mutate({ content: 'Act like an Python expert and tell me how to learn python programming' });
+          break;
+          case 'Web Bevelopment Basics':
+          mutate({ content: 'Act like an Web Development Expert and tell me how to learn Web Development Basics' });
+          break;
+          case 'Digital Marketing':
+          mutate({ content: 'Act like an Digital Marketing Expert and tell me how to learn Digital Marketing' });
+          break;
+          case 'Machine Learning':
+          mutate({ content: 'Act like an Machine learning Expert and tell me how to learn Machine learning' });
+          break;
+        default:
+          break;
+      }
+
     };
   
     return (
@@ -46,16 +62,16 @@ const SearchBar = ({ mutate, setUserInput }) => {
           <span className="text-md font-semibold">Quick suggestions:</span>
         </div>
         <div className="flex flex-wrap gap-1.5 items-center text-balance">
-          <button onClick={() => handleSuggestions({content: 'Act like an Python expert and tell me how to learn python programming'})} className="px-4 py-2 text-sm bg-white text-search font-bold rounded-full border-search border-3 hover:scale-105 cursor-pointer transition-all duration-300">
+          <button onClick={() => handleSuggestions({content: 'Learn Python Programming'})} className="px-4 py-2 text-sm bg-white text-search font-bold rounded-full border-search border-3 hover:scale-105 cursor-pointer transition-all duration-300">
             Learn Python programming
           </button>
-          <button onClick={() => handleSuggestions({content: 'Act like an Web Development Expert and tell me how to learn web development basics'})} className="px-4 py-2 text-sm bg-white text-search font-bold rounded-full border-search border-3 hover:scale-105 cursor-pointer transition-all duration-300">
+          <button onClick={() => handleSuggestions({content: 'Web Development Basics'})} className="px-4 py-2 text-sm bg-white text-search font-bold rounded-full border-search border-3 hover:scale-105 cursor-pointer transition-all duration-300">
             Web development basics
           </button>
-          <button onClick={() => handleSuggestions({content: 'Act like an Digital Marketing Expert and tell me how to learn Digital marketing'})} className="px-4 py-2 text-sm bg-white text-search font-bold rounded-full border-search border-3 hover:scale-105 cursor-pointer transition-all duration-300">
+          <button onClick={() => handleSuggestions({content: 'Digital Marketing'})} className="px-4 py-2 text-sm bg-white text-search font-bold rounded-full border-search border-3 hover:scale-105 cursor-pointer transition-all duration-300">
             Digital marketing
           </button>
-          <button onClick={() => handleSuggestions({content: 'Act like an Machine learning Expert and tell me how to learn Machine learning'})} className="px-4 py-2 text-sm bg-white text-search font-bold rounded-full border-search border-3 hover:scale-105 cursor-pointer transition-all duration-300">
+          <button onClick={() => handleSuggestions({content: 'Machine Learning'})} className="px-4 py-2 text-sm bg-white text-search font-bold rounded-full border-search border-3 hover:scale-105 cursor-pointer transition-all duration-300">
             Machine learning
           </button>
         </div>
