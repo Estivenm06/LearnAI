@@ -2,8 +2,10 @@ import React, { useEffect, useState, useRef } from "react";
 import "@ui5/webcomponents-icons/dist/AllIcons.js";
 import "@ui5/webcomponents-icons/dist/ai.js";
 import ReactMarkdown from "react-markdown";
+import remarkGfm from 'remark-gfm'
+import rehypeSanitize from 'rehype-sanitize';
+import rehypeHighlight from 'rehype-highlight';
 
-import { RenderStructuredResponse } from "../chat/RenderStructuredResponse.jsx";
 import { SearchBar } from "../common/SearchBar.jsx";
 import { useChat } from "../../hooks/useChat.js";
 
@@ -30,9 +32,9 @@ const Home = () => {
   }, [assistantResponse, clearResponse, userInput]);
 
   return (
-    <main className="mt-25 md:mt-0 flex-1 h-screen relative overflow-hidden flex flex-col">
+    <main className="mt-25 md:mt-0 flex-1 h-screen relative overflow-hidden grid grid-rows-2">
       <article
-        className={`flex-1 overflow-y-auto px-6 py-4 space-y-6 ${
+        className={`row-span-2 overflow-y-auto px-6 py-4 space-y-6 ${
           responses.length > 0 || assistantResponse
             ? "z-0"
             : "z-20 w-full h-full flex justify-center items-center"
@@ -54,7 +56,7 @@ const Home = () => {
                 >
                 {/* User Message */}
                 <div className="flex justify-end w-full">
-                  <p className="text-base font-medium text-white bg-learnSidebar px-4 py-3 rounded-xl shadow-sm w-fit max-w-xl whitespace-pre-wrap">
+                  <p className="text-base font-medium text-white bg-learnSidebar px-4 py-3 rounded-xl shadow-sm w-fit">
                     {userInput}
                   </p>
                 </div>
@@ -62,29 +64,12 @@ const Home = () => {
                 {/* Assistant Response (only render if it exists) */}
                 {responses[idx] && (
                   <div className="flex justify-start w-full">
-                    <div className="space-y-6 bg-gray-100 px-4 py-3 rounded-xl shadow-md w-full max-w-2xl">
-                      <ReactMarkdown
-                        components={{
-                          p: (props) => (
-                            <p
-                              className="text-xl font-bold text-learnSidebar"
-                              {...props}
-                            />
-                          ),
-                          h3: (props) => (
-                            <h3
-                              className="text-2xl text-gray-800 "
-                              {...props}
-                            />
-                          ),
-                          ul: (props) => (
-                            <ul className="pl-5 mb-5 space-y-2 " {...props} />
-                          ),
-                          strong: (props) => (
-                            <strong className="text-lg" {...props} />
-                          ),
-                        }}
-                      >
+                    <div className="space-y-6 bg-gray-200 px-4 py-3 rounded-xl shadow-md overflow-x-hidden w-full max-w-2xl">
+                      <ReactMarkdown remarkPlugins={[remarkGfm]}
+                      rehypePlugins={[rehypeSanitize, rehypeHighlight]}
+                      components={{
+                        pre: (props) => <pre className="whitespace-pre-wrap text-balance w-fit" {...props}/>
+                      }}>
                         {responses[idx]}
                       </ReactMarkdown>
                     </div>
