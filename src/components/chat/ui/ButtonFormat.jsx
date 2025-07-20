@@ -4,7 +4,7 @@ const ButtonFormatSelected = ({ handleFormat, format }) => {
   return (
     <button
       onClick={() => handleFormat(format)}
-      className="cursor-default shadow-md py-5 px-10 md:py-8 md:px-15 justify-center items-center flex bg-white rounded-md ring-2 ring-search font-bold text-search duration-300 transition-all"
+      className={`px-10 py-2 cursor-default ring-2 ring-search text-search duration-300 transition-all shadow-lg bg-white ${format === 'Guide' ? 'rounded-l-lg' : 'rounded-r-lg'}`}
     >
       {format}
     </button>
@@ -15,7 +15,7 @@ const ButtonFormatNotSelected = ({ handleFormat, format }) => {
   return (
     <button
       onClick={() => handleFormat(format)}
-      className="shadow-md cursor-pointer py-5 px-10 md:py-8 md:px-15 justify-center items-center flex bg-gray-50 rounded-md ring-2 ring-gray-500 text-gray-500 font-bold duration-300 transition-all"
+      className={`hover:scale-105 hover:ring-2 hover:font-semibold px-10 py-2 shadow-lg cursor-pointer bg-gray-100 ring-1 ring-gray-500 text-gray-500 font-normal duration-300 transition-all ${format === 'Guide' ? 'rounded-l-lg' : 'rounded-r-lg'}`}
     >
       {format}
     </button>

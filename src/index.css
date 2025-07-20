@@ -22,12 +22,12 @@
 
 /* Track */
 ::-webkit-scrollbar-track {
-    @apply bg-transparent p-5 rounded-full;
+    @apply bg-transparent;
 }
 
 /* Handle */
 ::-webkit-scrollbar-thumb {
-    @apply bg-learnSidebar rounded-sm;
+    @apply bg-learnSidebar rounded-xs;
 }
 
 /* Handle on hover */

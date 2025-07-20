@@ -1,3 +1,4 @@
+/* eslint-disable no-undef */
 import "dotenv/config";
 
 export async function POST(request) {
