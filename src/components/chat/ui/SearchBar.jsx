@@ -50,7 +50,7 @@ const SearchBar = ({ mutate, setUserInput, loading }) => {
   const handleFormat = (format) => setFormat(format);
 
   return (
-    <article className="w-sm sm:w-full text-base px-6 pb-2 py-1">
+    <article className="px-6 pb-2 py-1">
       {/* Main Search Form */}
       <form className="relative" onSubmit={onSubmit}>
         <input
@@ -92,7 +92,7 @@ const SearchBar = ({ mutate, setUserInput, loading }) => {
           Select format:{" "}
         </span>
         <div className="w-full">
-          <div className="inline-grid grid-cols-2 font-bold">
+          <div className="flex font-bold">
             {["Guide", "RoadMap"].map((f) =>
               format === f ? (
                 <ButtonFormatSelected
@@ -113,12 +113,12 @@ const SearchBar = ({ mutate, setUserInput, loading }) => {
       </div>
 
       {/* Quick Suggestions */}
-      <div className="flex flex-col gap-2 mb-3 h-full">
+      <div className="hidden sm:flex flex-col gap-2 mb-3">
         <span className="text-md font-semibold text-gray-300 items-center flex justify-start">
           <Icon name="lightbulb" className="mr-1 w-4 h-4 fill-white" />
           Quick suggestions:
         </span>
-        <div className="flex flex-wrap gap-1.5 items-center text-balance">
+        <div className="flex flex-wrap gap-1.5 items-center">
           {[
             "Learn Python programming",
             "Web development basics",

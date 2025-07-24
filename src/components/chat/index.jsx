@@ -24,7 +24,7 @@ const Home = () => {
     }
   }, [assistantResponse, clearResponse, userInput]);
   return (
-    <main className="max-w-4xl mx-auto h-screen relative overflow-hidden grid grid-rows-2">
+    <main className="max-w-screen-lg px-4 py-2 mx-auto h-screen relative overflow-hidden grid grid-rows-2 font-mono">
       <Chat
         responses={responses}
         assistantResponse={assistantResponse}

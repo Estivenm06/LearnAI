@@ -55,8 +55,9 @@ const CodeBlock = ({ inline, className, children, ...props }) => {
   );
 };
 
-const MarkdownWithCopy = ({ content }) => {
+const MarkdownWithCopy = ({ content, scrollRef }) => {
   return (
+    <>
     <ReactMarkdown
       remarkPlugins={[remarkGfm]}
       rehypePlugins={[rehypeKatex, rehypeHighlight]}
@@ -66,6 +67,8 @@ const MarkdownWithCopy = ({ content }) => {
     >
       {content}
     </ReactMarkdown>
+      <div ref={scrollRef}/>
+    </>
   );
 };
 

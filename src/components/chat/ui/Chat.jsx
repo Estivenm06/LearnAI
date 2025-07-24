@@ -14,16 +14,14 @@ const Chat = ({
 }) => {
   return (
     <article
-      className={`w-sm sm:w-full row-span-2 overflow-y-auto px-6 py-4 space-y-6 ${
-        responses.length > 0 || assistantResponse
-          ? "z-0"
-          : "z-20 w-full h-full flex justify-center items-center"
+      className={`rounded-xl row-span-2 overflow-y-auto px-6 py-4 space-y-6 ${
+        (responses.length > 0 || assistantResponse ? "bg-learnSidebar" : '')
       }`}
     >
       {/* Render greeting if no messages yet */}
       {responses.length === 0 && !assistantResponse && !userInput ? (
         <div className="flex justify-center items-center h-full select-none">
-          <h1 className="animate-pulse text-5xl lg:text-7xl bg-gradient-to-r from-cyan-500 to-blue-500 text-transparent bg-clip-text p-5 font-bold drop-shadow-xl">
+          <h1 className="animate-pulse text-5xl md:text-6xl lg:text-7xl bg-gradient-to-r from-cyan-500 to-blue-500 text-transparent bg-clip-text p-5 font-extrabold drop-shadow-xl">
             Greetings
           </h1>
         </div>
@@ -36,20 +34,18 @@ const Chat = ({
             >
               {/* User Message */}
               <div className="flex justify-end w-full">
-                <p className="text-base font-medium text-white bg-learnSidebar px-4 py-3 rounded-xl shadow-sm w-fit">
+                <p className="text-base font-medium text-white bg-stone-500 px-4 py-3 rounded-xl shadow-md w-fit">
                   {userInput}
                 </p>
               </div>
 
               {/* Assistant Response (only render if it exists) */}
               {responses[idx] && (
-                <div className="flex justify-start w-full">
+                <div className="flex justify-start">
                   <div
-                    className="space-y-6 bg-learnSidebar text-white px-4 py-3 rounded-xl shadow-md overflow-x-hidden"
-                    ref={scrollRef}
+                    className="space-y-6 bg-learnbg text-white px-4 py-3 rounded-xl shadow-md overflow-x-hidden text-pretty "
                   >
-                    <MarkdownWithCopy content={responses[idx]} />
-                    {console.log(responses[idx])}
+                    <MarkdownWithCopy content={responses[idx]} scrollRef={scrollRef} />
                   </div>
                 </div>
               )}
@@ -58,9 +54,9 @@ const Chat = ({
 
           {/* Render current animated message */}
           {userInput && (
-            <div className="flex flex-col mx-auto max-w-4xl px-6 space-y-4">
+            <div className="flex flex-col px-6 space-y-4">
               <div className="flex justify-end w-full">
-                <p className="text-base font-medium text-white bg-learnSidebar px-4 py-3 rounded-xl shadow-sm w-fit max-w-xl whitespace-pre-wrap">
+                <p className="text-base font-medium text-white bg-stone-500 px-4 py-3 rounded-xl shadow-sm w-fit">
                   {userInput}
                 </p>
               </div>

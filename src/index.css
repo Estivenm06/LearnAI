@@ -11,7 +11,7 @@
     --color-learnSidebar: #464646;
     --color-learnbg: #343434;
     --spacing-learn: 300px;
-    --font-sans: 'Inter', system-ui, sans-serif;
+    --font-mono: 'Inter', system-ui, sans-serif;
     --color-search: #554038;
 }
 
@@ -22,12 +22,12 @@
 
 /* Track */
 ::-webkit-scrollbar-track {
-    @apply bg-transparent;
+    @apply bg-learnSidebar rounded-full;
 }
 
 /* Handle */
 ::-webkit-scrollbar-thumb {
-    @apply bg-learnSidebar rounded-xs;
+    @apply bg-stone-400 rounded-full;
 }
 
 /* Handle on hover */
