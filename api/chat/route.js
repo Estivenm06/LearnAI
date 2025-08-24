@@ -22,11 +22,12 @@ export async function POST(request) {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          model: "meta-llama/llama-4-scout-17b-16e-instruct",
+          model: "openai/gpt-oss-120b",
           messages,
           stream: false,
-          temperature: 2
-        }),
+          temperature: 0.4,
+          max_tokens: 1000
+        }), 
       }
     );
 

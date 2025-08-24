@@ -1,18 +1,43 @@
 @import "tailwindcss";
 
+:root {
+  --background: #ffffff;
+  --foreground: #4b5563;
+  --card: #fffbeb;
+  --card-foreground: #4b5563;
+  --popover: #ffffff;
+  --popover-foreground: #4b5563;
+  --primary: #ea580c;
+  --primary-foreground: #ffffff;
+  --secondary: #f97316;
+  --secondary-foreground: #ffffff;
+  --border: #e5e7eb;
+  --input: #f9fafb;
+  --ring: rgba(234, 88, 12, 0.5);
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+    --font-mono: 'Inter', system-ui, sans-serif;
+}
+
 @font-face {
     font-family: 'Inter';
     src: url('/fonts/InterFont-woff2') format('woff2');
     font-weight: 400;
     font-display: swap;
-}
-
-@theme {
-    --color-learnSidebar: #464646;
-    --color-learnbg: #343434;
-    --spacing-learn: 300px;
-    --font-mono: 'Inter', system-ui, sans-serif;
-    --color-search: #554038;
 }
 
 /* width */
@@ -22,12 +47,12 @@
 
 /* Track */
 ::-webkit-scrollbar-track {
-    @apply bg-learnSidebar rounded-full;
+    @apply bg-gray-200 rounded-full;
 }
 
 /* Handle */
 ::-webkit-scrollbar-thumb {
-    @apply bg-stone-400 rounded-full;
+    @apply bg-primary/80 rounded-full;
 }
 
 /* Handle on hover */
